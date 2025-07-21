@@ -105,9 +105,10 @@ open class GameCenter: NSObject, ObservableObject {
         }
     }
     
-    #if DEBUG
     /// (개발자 모드) 업적 초기화
-    func resetAchievement() {
+    /// Author: Jager Yoo
+    @_spi(Developer)
+    public func resetAchievement() {
         guard GKLocalPlayer.local.isAuthenticated else { return }
         GKAchievement.resetAchievements { error in
             if let error = error {
@@ -117,7 +118,6 @@ open class GameCenter: NSObject, ObservableObject {
             }
         }
     }
-    #endif
     
     open func fetchMyAchievement() async {
         do {
